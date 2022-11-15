@@ -1,5 +1,6 @@
 {
   "coc.preferences.extensionUpdateCheck": "weekly",
+  "coc.preferences.formatOnSave": true,
   "suggest.noselect": true,
   "suggest.enablePreselect": false,
   "suggest.timeout": 5000,
@@ -30,5 +31,8 @@
     "value": "\uf89f",
     "variable": "\ue71b"
   },
-  "coc.preferences.formatOnSave": true
+  // LSP configurations
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "~/.local/bin/black",
+  "python.linting.pylintPath": "~/.local/bin/pylint"
 }

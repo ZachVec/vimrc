@@ -1,5 +1,5 @@
 " This is COC's Plugins
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-pyright', 'coc-lists', 'coc-vimlsp', 'coc-pairs']
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-pyright', 'coc-vimlsp', 'coc-pairs', 'coc-markdownlint']
 
 " Line numbering
 set numberwidth=3 number
