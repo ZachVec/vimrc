@@ -17,8 +17,7 @@ colorscheme gruvbox
 
 
 """""""""""""""""""""""""""""""
-" => Plugin: coc.nvim
-"    Refer to: https://github.com/neoclide/coc.nvim/wiki/Completion-with-sources#trigger-mode-of-completion
+" => Plugin: coc.nvim, General
 """""""""""""""""""""""""""""""
 let g:coc_config_home = "~/.vim/vimrcs/"
 " May need for vim (not neovim) since coc.nvim calculate byte offset by count utf-8 byte sequence.
@@ -78,6 +77,26 @@ nmap <F2> <Plug>(coc-rename)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 
+"""""""""""""""""""""""""""""""
+" => Plugin: coc.nvim, coc-git
+"""""""""""""""""""""""""""""""
+" status line config for lightline users
+let g:lightline = {
+  \ 'active': {
+  \   'left': [
+  \     [ 'mode', 'paste' ],
+  \     [ 'ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method' ]
+  \   ],
+  \   'right':[
+  \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+  \     [ 'blame' ]
+  \   ],
+  \ },
+  \ 'component_function': {
+  \   'blame': 'LightlineGitBlame',
+  \ }
+\ }
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin options: ZFZ
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -105,4 +124,10 @@ function! ShowDocumentation()
   else
     call feedkeys('K', 'in')
   endif
+endfunction
+
+function! LightlineGitBlame() abort
+  let blame = get(b:, 'coc_git_blame', '')
+  " return blame
+  return winwidth(0) > 120 ? blame : ''
 endfunction
