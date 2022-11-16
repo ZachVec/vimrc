@@ -1,3 +1,7 @@
+" Fast escape from insert mode
+inoremap <C-c> <ESC>
+inoremap jj <ESC>
+
 " This is COC's Plugins
 let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-pyright', 'coc-vimlsp', 'coc-pairs', 'coc-markdownlint']
 
@@ -9,6 +13,7 @@ augroup line_numbering
   au InsertLeave * set relativenumber
 augroup end
 
+" Enable vim true color
 if has("termguicolors")
     " fix bug for vim
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
