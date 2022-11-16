@@ -33,6 +33,9 @@
   },
   // LSP configurations
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "~/.local/bin/black",
-  "python.linting.pylintPath": "~/.local/bin/pylint"
+  // Pip Users
+  // "python.formatting.blackPath": "~/.local/bin/black",
+  // "python.linting.pylintPath": "~/.local/bin/pylint"
+  // Conda Users
+  "python.pythonPath": "/usr/bin/pyright-env-hook"
 }

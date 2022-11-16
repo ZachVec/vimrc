@@ -120,7 +120,6 @@ pip install pylint
 Then name the path they are installed in `coc-settings.json` like following lines:
 
 ```json
-"python.formatting.provider": "black",
 "python.formatting.blackPath": "~/.local/bin/black",
 "python.linting.pylintPath": "~/.local/bin/pylint"
 ```
@@ -129,3 +128,35 @@ Then name the path they are installed in `coc-settings.json` like following line
 >
 > Also, there are other formatters and linters available. Please refer to the documentation
 > of [pyright](https://github.com/fannheyward/coc-pyright) for more information.
+
+##### Use conda as package manager
+
+Step1: Type the commands below to activate your environment and install LSP.
+
+```bash
+conda activate <env>
+conda install black
+conda install pylint
+```
+
+Step2: Then create the following file:
+
+```bash
+#!/bin/bash
+python "$@"
+```
+
+Step3: And make it executable: `chmod +x <filename>`, then add it to your path.
+
+Step4: Set `python.pythonPath` in your `coc-settings.json`:
+
+```json
+"python.pythonPath": "<filepath>"
+```
+
+`<filepath>` is the path to the file you write in step2.
+
+Step5: Activate the environment before starting vim.
+
+This way python from your currently activated environment will be used.
+
