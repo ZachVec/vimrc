@@ -3,7 +3,7 @@ inoremap <C-c> <ESC>
 inoremap jj <ESC>
 
 " This is COC's Plugins
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-pyright', 'coc-vimlsp', 'coc-pairs', 'coc-markdownlint']
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-pyright', 'coc-vimlsp', 'coc-pairs', 'coc-markdownlint', 'coc-terminal']
 
 " Line numbering
 set numberwidth=3 number

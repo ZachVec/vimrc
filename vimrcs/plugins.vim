@@ -8,6 +8,8 @@ call plug#begin("~/.vim/plugged")
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
   Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
   Plug 'junegunn/fzf.vim'
+  Plug 'puremourning/vimspector'
+  Plug 'preservim/nerdtree'
 call plug#end()
 
 """""""""""""""""""""""""""""""
@@ -56,7 +58,7 @@ endif
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" GoTo code navigation.
+" GoTo navigation
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -97,6 +99,14 @@ let g:lightline = {
   \ }
 \ }
 
+
+"""""""""""""""""""""""""""""""
+" => Plugin: coc.nvim, coc-terminal
+"""""""""""""""""""""""""""""""
+nmap <F3> <Plug>(coc-terminal-toggle)
+tmap <F3> <C-\><C-n><Plug>(coc-terminal-toggle)
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin options: ZFZ
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -105,10 +115,46 @@ nnoremap <leader>f :GFiles<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugin options: vim-multiple-cursors
+" => Plugin options: vimspector
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <F5>           <Plug>VimspectorContinue
+nmap <S-F5>         <Plug>VimspectorRestart
+nmap <F6>           <Plug>VimspectorStop
+nmap <F7>           <Plug>VimspectorUpFrame
+nmap <S-F7>         <Plug>VimspectorDownFrame
+nmap <F8>           <Plug>VimspectorToggleBreakpoint
+nmap <S-F8>         <Plug>VimspectorToggleConditionalBreakpoint
+nmap <F9>           <Plug>VimspectorStepOver
+nmap <S-F9>         <Plug>VimspectorStepInto
+nmap <S-F10>        <Plug>VimspectorStepOut
+
+" 'di' = 'debug inspect' for normal & visual mode
+nnoremap <leader>di 	  <Plug>VimspectorBalloonEval
+xnoremap <leader>di 		<Plug>VimspectorBalloonEval
+
+" toggle & untoggle breakpoints window & disassembly
+nnoremap <leader>db     <Plug>VimspectorBreakpoints
+nnoremap <leader>dd     <Plug>VimspectorDisassemble
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin options: NERDTree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>n :NERDTreeToggle<CR>
+
+" Start NERDTree. If a file is specified, move the cursor to its window.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -118,6 +164,7 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
@@ -126,8 +173,11 @@ function! ShowDocumentation()
   endif
 endfunction
 
+
 function! LightlineGitBlame() abort
   let blame = get(b:, 'coc_git_blame', '')
   " return blame
   return winwidth(0) > 120 ? blame : ''
 endfunction
+
+

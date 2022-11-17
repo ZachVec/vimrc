@@ -172,7 +172,7 @@ set nowrap "no Wrap lines
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
-" Smart way to move between windows
+" Moving around with windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -184,13 +184,11 @@ noremap gj :bnext<cr>
 noremap gh :tabprev<cr>
 noremap gl :tabnext<cr>
 let g:lasttab = 1
-nnoremap gp :exe "tabn ".g:lasttab<cr>
+nnoremap g; :exe "tabn ".g:lasttab<cr>
 au TabLeave * let g:lasttab = tabpagenr()
 
-" Close the current buffer
+" Close current buffer or all buffers
 map <leader>bc :Bclose<cr>:tabclose<cr>gT
-
-" Close all the buffers
 map <leader>ba :bufdo bd<cr>
 
 " Useful mappings for managing tabs
@@ -198,13 +196,7 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
 map <leader>te :tabedit <C-r>=escape(expand("%:p:h"), " ")<cr>/
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers
 try
@@ -231,7 +223,8 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
-map 0 ^
+nmap H ^
+nmap L $
 
 " Move a line of text using ALT+[jk] or Command+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
@@ -245,31 +238,6 @@ if has("mac") || has("macunix")
   vmap <D-j> <M-j>
   vmap <D-k> <M-k>
 endif
-
-" Delete trailing white space on save, useful for some filetypes ;)
-fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    silent! %s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfun
-
-if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Run & Debug
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <F5> :call CompileRun()<CR>
-imap <F5> <Esc>:call CompileRun()<CR>
-vmap <F5> <Esc>:call CompileRun()<CR>
-
-map <F6> :call CompileDebug()<CR>
-imap <F6> <Esc>:call CompileDebug()<CR>
-vmap <F6> <Esc>:call CompileDebug()<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -303,46 +271,3 @@ function! <SID>BufcloseCloseIt()
         execute("bdelete! ".l:currentBufNum)
     endif
 endfunction
-
-
-func! CompileRun()
-exec "w"
-if &filetype == 'c'
-    exec "!gcc % -o %<"
-    exec "!./%<"
-elseif &filetype == 'cc'
-    exec "!g++ % -o %<"
-    exec "!./%<"
-elseif &filetype == 'cpp'
-    exec "!g++ % -o %<"
-    exec "!./%<"
-elseif &filetype == 'java'
-    exec "!javac %"
-    exec "!java %"
-elseif &filetype == 'sh'
-    exec "!bash %"
-elseif &filetype == 'python'
-    exec "!python3 %"
-elseif &filetype == 'html'
-    exec "!google-chrome % &"
-elseif &filetype == 'go'
-    exec "!go build %<"
-    exec "!go run %"
-elseif &filetype == 'matlab'
-    exec "!octave %"
-endif
-endfunc
-
-func! CompileDebug()
-exec "w"
-if &filetype == 'c'
-    exec "!gcc % -g -o %<"
-    exec "!gdb ./%<"
-elseif &filetype == 'cc'
-    exec "!g++ % -g -o %<"
-    exec "!gdb ./%<"
-elseif &filetype == 'cpp'
-    exec "!g++ % -g -o %<"
-    exec "!gdb ./%<"
-endif
-endfunc
