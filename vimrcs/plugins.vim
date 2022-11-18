@@ -9,6 +9,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'junegunn/fzf.vim'
   Plug 'puremourning/vimspector'
   Plug 'preservim/nerdtree'
+  Plug 'ConradIrwin/vim-bracketed-paste'
 call plug#end()
 
 """""""""""""""""""""""""""""""
@@ -125,7 +126,7 @@ xnoremap <leader>di 		<Plug>VimspectorBalloonEval
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin options: NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <C-N> :NERDTreeToggle<CR>
+nnoremap <silent> <C-N> :NERDTreeToggle<CR>
 
 " Start NERDTree. If a file is specified, move the cursor to its window.
 autocmd StdinReadPre * let s:std_in=1
