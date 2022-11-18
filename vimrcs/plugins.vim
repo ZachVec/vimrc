@@ -5,7 +5,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'morhetz/gruvbox'
   Plug 'itchyny/lightline.vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'mg979/vim-visual-multi', {'branch': 'master'}
   Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
   Plug 'junegunn/fzf.vim'
   Plug 'puremourning/vimspector'
@@ -36,22 +35,11 @@ set updatetime=300
 set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
-" NOTE: There's always complete item selected by default, you may want to enable
-" no select by `"suggest.noselect": true` in your configuration file.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice.
@@ -110,8 +98,8 @@ tmap <F3> <C-\><C-n><Plug>(coc-terminal-toggle)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin options: ZFZ
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>f :GFiles<CR>
+nnoremap <C-F> :Buffers<CR>
+nnoremap <C-G> :GFiles<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -124,23 +112,20 @@ nmap <F7>           <Plug>VimspectorUpFrame
 nmap <S-F7>         <Plug>VimspectorDownFrame
 nmap <F8>           <Plug>VimspectorToggleBreakpoint
 nmap <S-F8>         <Plug>VimspectorToggleConditionalBreakpoint
+nmap <C-F8>         <Plug>VimspectorBreakpoints
 nmap <F9>           <Plug>VimspectorStepOver
 nmap <S-F9>         <Plug>VimspectorStepInto
-nmap <S-F10>        <Plug>VimspectorStepOut
+nmap <F10>          <Plug>VimspectorStepOut
+nmap <F12>          <Plug>VimspectorDisassemble
 
 " 'di' = 'debug inspect' for normal & visual mode
 nnoremap <leader>di 	  <Plug>VimspectorBalloonEval
 xnoremap <leader>di 		<Plug>VimspectorBalloonEval
 
-" toggle & untoggle breakpoints window & disassembly
-nnoremap <leader>db     <Plug>VimspectorBreakpoints
-nnoremap <leader>dd     <Plug>VimspectorDisassemble
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin options: NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <C-N> :NERDTreeToggle<CR>
 
 " Start NERDTree. If a file is specified, move the cursor to its window.
 autocmd StdinReadPre * let s:std_in=1
