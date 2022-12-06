@@ -1,0 +1,24 @@
+{
+  "$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json#",
+  "configurations": {
+    "debug single cpp": {
+      "adapter": "vscode-cpptools",
+      "filetypes": [
+        "c",
+        "cpp"
+      ],
+      "default": true,
+      "configuration": {
+        "request": "launch",
+        "program": "${workspaceRoot}/${fileBasenameNoExtension}",
+        "stopOnEntry": false
+      },
+      "breakpoints": {
+        "exception": {
+          "cpp_throw": "Y",
+          "cpp_catch": "N"
+        }
+      }
+    }
+  }
+}
