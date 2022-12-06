@@ -31,11 +31,6 @@
     "value": "\uf89f",
     "variable": "\ue71b"
   },
-  // LSP configurations
   "python.formatting.provider": "black",
-  // Pip Users
-  // "python.formatting.blackPath": "~/.local/bin/black",
-  // "python.linting.pylintPath": "~/.local/bin/pylint"
-  // Conda Users
   "python.pythonPath": "/usr/bin/pyright-env-hook"
 }
