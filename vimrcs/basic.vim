@@ -9,6 +9,9 @@ augroup line_numbering
   au InsertLeave * set relativenumber
 augroup end
 
+" code folding
+set foldmethod=indent
+
 " Sets how many lines of history VIM has to remember
 set history=500
 
