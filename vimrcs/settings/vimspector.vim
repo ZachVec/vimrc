@@ -1,15 +1,15 @@
 " Key mappings
 nmap <F5>           <Plug>VimspectorContinue
-nmap <S-F5>         <Plug>VimspectorRestart
+nmap <M-F5>         <Plug>VimspectorRestart
 nmap <F6>           <Plug>VimspectorStop
-nmap <F7>           <Plug>VimspectorUpFrame
-nmap <S-F7>         <Plug>VimspectorDownFrame
-nmap <F8>           <Plug>VimspectorToggleBreakpoint
-nmap <S-F8>         <Plug>VimspectorToggleConditionalBreakpoint
-nmap <C-F8>         <Plug>VimspectorBreakpoints
-nmap <F9>           <Plug>VimspectorStepOver
-nmap <S-F9>         <Plug>VimspectorStepInto
-nmap <F10>          <Plug>VimspectorStepOut
+nmap <F7>           <Plug>VimspectorStepOver
+nmap <F8>           <Plug>VimspectorStepInto
+nmap <M-F8>         <Plug>VimspectorStepOut
+nmap <F9>           <Plug>VimspectorToggleBreakpoint
+nmap <M-F9>         <Plug>VimspectorToggleConditionalBreakpoint
+nmap <F10>          <Plug>VimspectorDownFrame
+nmap <M-F10>        <Plug>VimspectorUpFrame
+nmap <F11>          <Plug>VimspectorBreakpoints
 nmap <F12>          <Plug>VimspectorDisassemble
 
 " 'di' = 'debug inspect' for normal & visual mode
