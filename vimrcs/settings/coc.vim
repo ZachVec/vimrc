@@ -1,4 +1,4 @@
-let g:coc_config_home = "~/.vim/vimrcs/"
+let g:coc_config_home = "~/.vim/vimrcs/settings"
 let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-pyright', 'coc-vimlsp', 'coc-pairs', 'coc-markdownlint']
 
 " May need for vim (not neovim) since coc.nvim calculate byte offset by count utf-8 byte sequence.
@@ -15,7 +15,7 @@ inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#prev(1)
 
 " Press <CR> to accept selected completion item.
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()

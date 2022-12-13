@@ -34,9 +34,6 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
-" Fix Meta key in terminal
-call Terminal_MetaMode(0)
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -51,13 +48,11 @@ source $VIMRUNTIME/menu.vim
 
 " Turn on the Wild menu
 set wildmenu
-
-" Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 if has("win16") || has("win32")
-    set wildignore+=.git\*,.hg\*,.svn\*
+  set wildignore+=.git\*,.hg\*,.svn\*
 else
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+  set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
 
 " Always show current position
@@ -97,12 +92,6 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
-
 " Add a bit extra margin to the left
 set foldcolumn=1
 
@@ -118,15 +107,15 @@ set regexpengine=0
 
 " Enable 256 colors
 if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
+  set t_Co=256
 endif
 if has("termguicolors")
-    " fix bug for vim
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  " fix bug for vim
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-    " enable true color
-    set termguicolors
+  " enable true color
+  set termguicolors
 endif
 
 set background=dark
@@ -218,6 +207,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " Always show the status line
 set laststatus=2
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -243,17 +233,13 @@ function! <SID>BufcloseCloseIt()
     let l:alternateBufNum = bufnr("#")
 
     if buflisted(l:alternateBufNum)
-        buffer #
+      buffer #
     else
-        bnext
-    endif
-
-    if bufnr("%") == l:currentBufNum
-        new
+      new
     endif
 
     if buflisted(l:currentBufNum)
-        execute("bdelete! ".l:currentBufNum)
+      execute("bdelete! ".l:currentBufNum)
     endif
 endfunction
 
@@ -299,3 +285,4 @@ function! Terminal_MetaMode(mode)
         endfor
     endif
 endfunc
+call Terminal_MetaMode(0)
