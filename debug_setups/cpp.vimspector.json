@@ -1,7 +1,7 @@
 {
   "$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json#",
   "configurations": {
-    "debug single cpp": {
+    "debug c/cpp": {
       "adapter": "vscode-cpptools",
       "filetypes": [
         "c",
@@ -15,6 +15,7 @@
       },
       "breakpoints": {
         "exception": {
+          "all": "N",
           "cpp_throw": "Y",
           "cpp_catch": "N"
         }

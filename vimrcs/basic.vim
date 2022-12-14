@@ -11,6 +11,7 @@ augroup end
 
 " code folding
 set foldmethod=indent
+set foldlevel=4
 
 " Sets how many lines of history VIM has to remember
 set history=500
