@@ -5,11 +5,11 @@ call plug#begin("~/.vim/plugged")
   Plug 'itchyny/lightline.vim'
   Plug 'Yggdroot/indentLine'
   Plug 'preservim/nerdtree'
-  Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
-  Plug 'junegunn/fzf.vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'puremourning/vimspector'
   Plug 'monkoose/vim9-stargate'
+  Plug 'Yggdroot/LeaderF'
+  Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 colorscheme gruvbox                       " Colorscheme
@@ -23,4 +23,6 @@ source $PLUGIN_SETTINGS/fzf.vim
 source $PLUGIN_SETTINGS/coc.vim
 source $PLUGIN_SETTINGS/vimspector.vim
 source $PLUGIN_SETTINGS/stargate.vim
+source $PLUGIN_SETTINGS/gutentags.vim
+source $PLUGIN_SETTINGS/leaderf.vim
 
