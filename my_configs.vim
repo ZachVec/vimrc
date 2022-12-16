@@ -6,3 +6,5 @@ inoremap jj <ESC>
 nnoremap <silent><C-c> :w !clip.exe<CR><ESC>
 vnoremap <silent><C-c> :w !clip.exe<CR><ESC>
 
+" Map ESC
+tnoremap <ESC> <C-w>N
