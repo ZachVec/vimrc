@@ -1,5 +1,4 @@
 " Fast escape from insert mode
-inoremap <C-c> <ESC>
 inoremap jj <ESC>
 
 " Copy to windows clipboard in WSL2, comment out if you don't need it

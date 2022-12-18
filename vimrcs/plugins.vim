@@ -8,7 +8,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'puremourning/vimspector'
   Plug 'monkoose/vim9-stargate'
-  Plug 'Yggdroot/LeaderF'
+  Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
   Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
@@ -19,7 +19,6 @@ let $PLUGIN_SETTINGS = "~/.vim/vimrcs/settings"
 source $PLUGIN_SETTINGS/lightline.vim
 source $PLUGIN_SETTINGS/indentline.vim
 source $PLUGIN_SETTINGS/nerdtree.vim
-source $PLUGIN_SETTINGS/fzf.vim
 source $PLUGIN_SETTINGS/coc.vim
 source $PLUGIN_SETTINGS/vimspector.vim
 source $PLUGIN_SETTINGS/stargate.vim
